@@ -193,7 +193,10 @@
     </Compile>
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Rooms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
