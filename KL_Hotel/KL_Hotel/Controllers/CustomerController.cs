@@ -13,7 +13,7 @@ namespace KL_Hotel.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+            customerBusinessLayer customerBusiness = new customerBusinessLayer();
             List<Customer> customer = customerBusiness.Customers.ToList();
             return View(customer);
         }
@@ -27,7 +27,7 @@ namespace KL_Hotel.Controllers
         [HttpPost]
         public ActionResult Create(string firstName, string lastName, int user_ID, string password)
         {
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+            customerBusinessLayer customerBusiness = new customerBusinessLayer();
             Customer cust = new Customer();
             cust.FirstName = firstName;
             cust.LastName = lastName;

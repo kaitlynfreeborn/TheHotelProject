@@ -54,5 +54,36 @@ namespace KL_Hotel.Models
                 command.ExecuteNonQuery();
             }
         }
+        public IEnumerable<Customer> Customers
+        {
+            get
+            {
+                String connString = ConfigurationManager.ConnectionStrings["CustomerCon"].ConnectionString;
+                List<Customer> cust = new List<Customer>();
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand("select * from Customer", con);
+                    cmd.CommandType = CommandType.Text;
+                    con.Open();
+                    //read the info from the database table customer and store it in reader object
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Customer customer = new Customer();
+                        customer.FirstName = reader[1].ToString();
+                        customer.LastName = reader[2].ToString();
+                        customer.User_ID = Convert.ToInt32(reader[3]);
+                        customer.Password = reader[4].ToString();
+                        //add the object to the list 
+                        cust.Add(customer);
+
+                    }
+                    //return the list to the calling method
+                    return cust;
+
+                }
+
+            }
+        }
     }
 }

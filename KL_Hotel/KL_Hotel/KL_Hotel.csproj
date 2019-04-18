@@ -190,7 +190,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\CustomerBusinessLayer.cs" />
+    <Compile Include="Models\customerBusinessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
