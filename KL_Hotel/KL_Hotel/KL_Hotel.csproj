@@ -182,7 +182,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
@@ -194,7 +193,6 @@
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Home.cs" />
-    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Rooms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
