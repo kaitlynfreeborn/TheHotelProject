@@ -28,11 +28,13 @@ namespace KL_Hotel.Controllers
         public ActionResult Create(string firstName, string lastName, int user_ID, string password)
         {
             customerBusinessLayer customerBusiness = new customerBusinessLayer();
-            Customer cust = new Customer();
-            cust.FirstName = firstName;
-            cust.LastName = lastName;
-            cust.User_ID = user_ID;
-            cust.Password = password;
+            Customer cust = new Customer
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                User_ID = user_ID,
+                Password = password
+            };
 
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
