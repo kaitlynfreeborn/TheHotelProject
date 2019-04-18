@@ -10,6 +10,8 @@ using System.Data.SqlClient;
 namespace KL_Hotel.Models
 {
     public class customerBusinessLayer
+
+        //mfvdlssvmsd;lvdmlsvmds;l test
     {
         public void AddCustomer(Customer cust)
         {
