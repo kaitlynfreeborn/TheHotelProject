@@ -2,28 +2,29 @@
 @{
     ViewBag.Title = "Index";
 }
-<body style="background-color:aliceblue;">
-    change
 
-    <h2 align="center" style="font-size:100px; color:black;"><b>ROOMS</b></h2>
+    <body style="background-color:aliceblue;">
 
-    @foreach (var rm in Model)
-    {
-        <div class="card" style="float:left; border: double black 5px; margin: 15px; min-width: 225px">
-            <img src="@rm.RoomImage" class="card-img-top" alt="..." />
-            <div class="card-body" style="border-color:darkblue; background-color:antiquewhite;">
-                <div class="card border-info mb-3" style="width: 30rem; border:medium; border-color:darkblue; ">
-                    <h5 class="card-title" style="font-size:50px;">
-                        <b>@rm.RoomType</b>
-                    </h5>
+        <div class="container">
+            <h2 align="center" style="font-size:100px; color:black;"><b>ROOMS</b></h2>
+            @foreach (var rm in Model)
+            {
+                <div class="card" style="float:left; border: double black 5px; margin: 15px; min-width: 225px">
+                    <img src="@rm.RoomImage" class="card-img-top" alt="..." />
+                    <div class="card-body" style="border-color:darkblue; background-color:antiquewhite;">
+                        <div class="card border-info mb-3" style="width: 30rem; border:medium; border-color:darkblue; ">
+                            <h5 class="card-title" style="font-size:50px;">
+                                <b>@rm.RoomType</b>
+                            </h5>
 
-                    <p class="card-text" style="font-size:25px;">
-                        @rm.RoomDescription
-                    </p>
+                            <p class="card-text" style="font-size:25px;">
+                                @rm.RoomDescription
+                            </p>
 
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
-    }
-
 </body>
+
