@@ -25,14 +25,14 @@ namespace KL_Hotel.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string firstName, string lastName, int user_ID, string password)
+        public ActionResult Create(string firstName, string lastName, string userName, string password)
         {
             customerBusinessLayer customerBusiness = new customerBusinessLayer();
             Customer cust = new Customer
             {
                 FirstName = firstName,
                 LastName = lastName,
-                User_ID = user_ID,
+                UserName = userName,
                 Password = password
             };
 

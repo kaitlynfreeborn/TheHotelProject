@@ -36,12 +36,12 @@ namespace KL_Hotel.Models
                 };
                 command.Parameters.Add(paramLastName);
 
-                SqlParameter paramUser_ID = new SqlParameter
+                SqlParameter paramUserName = new SqlParameter
                 {
-                    ParameterName = "@User_ID",
-                    Value = cust.User_ID
+                    ParameterName = "@UserName",
+                    Value = cust.UserName
                 };
-                command.Parameters.Add(paramUser_ID);
+                command.Parameters.Add(paramUserName);
 
                 SqlParameter paramPassword = new SqlParameter
                 {
@@ -72,9 +72,10 @@ namespace KL_Hotel.Models
                     while (reader.Read())
                     {
                         Customer customer = new Customer();
+                        customer.CustomerID = Convert.ToInt32(reader[0]);
                         customer.FirstName = reader[1].ToString();
                         customer.LastName = reader[2].ToString();
-                        customer.User_ID = Convert.ToInt32(reader[3]);
+                        customer.UserName = reader[3].ToString();
                         customer.Password = reader[4].ToString();
                         //add the object to the list 
                         cust.Add(customer);
