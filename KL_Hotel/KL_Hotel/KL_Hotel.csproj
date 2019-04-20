@@ -258,6 +258,8 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Customer\SignUp.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Reservations\ReservationView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

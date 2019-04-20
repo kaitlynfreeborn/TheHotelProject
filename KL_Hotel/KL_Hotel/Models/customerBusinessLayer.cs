@@ -11,7 +11,6 @@ namespace KL_Hotel.Models
 {
     public class customerBusinessLayer
 
-        //mfvdlssvmsd;lvdmlsvmds;l test
     {
         public void AddCustomer(Customer cust)
         {
@@ -60,13 +59,13 @@ namespace KL_Hotel.Models
         {
             get
             {
-                String connString = ConfigurationManager.ConnectionStrings["CustomerCon"].ConnectionString;
+                String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
                 List<Customer> cust = new List<Customer>();
-                using (SqlConnection con = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
-                    SqlCommand cmd = new SqlCommand("select * from Customer", con);
+                    SqlCommand cmd = new SqlCommand("select * from Customer", connection);
                     cmd.CommandType = CommandType.Text;
-                    con.Open();
+                    connection.Open();
                     //read the info from the database table customer and store it in reader object
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
