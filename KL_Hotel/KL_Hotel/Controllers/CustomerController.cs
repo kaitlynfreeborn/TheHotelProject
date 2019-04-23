@@ -27,7 +27,7 @@ namespace KL_Hotel.Controllers
         [HttpPost]
         public ActionResult SignUp(string firstName, string lastName, string userName, string password)
         {
-            customerBusinessLayer customerBusiness = new customerBusinessLayer();
+            
             Customer cust = new Customer
             {
                 FirstName = firstName,
@@ -35,6 +35,8 @@ namespace KL_Hotel.Controllers
                 UserName = userName,
                 Password = password
             };
+
+            customerBusinessLayer customerBusiness = new customerBusinessLayer();
 
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
