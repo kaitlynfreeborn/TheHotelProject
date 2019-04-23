@@ -19,13 +19,13 @@ namespace KL_Hotel.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult SignUp()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(string firstName, string lastName, string userName, string password)
+        public ActionResult SignUp(string firstName, string lastName, string userName, string password)
         {
             customerBusinessLayer customerBusiness = new customerBusinessLayer();
             Customer cust = new Customer
