@@ -14,7 +14,7 @@ namespace KL_Hotel.Models
     {
         public void AddCustomer(Customer cust)
         {
-            String connString = ConfigurationManager.ConnectionStrings["CustomerCon"].ConnectionString;
+            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connString))
             {
                 SqlCommand command = new SqlCommand("spAddCustomer", sqlCon);
