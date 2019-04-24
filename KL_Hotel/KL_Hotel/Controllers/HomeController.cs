@@ -14,5 +14,19 @@ namespace KL_Hotel.Controllers
 
             return View();
         }
+    
+        public ActionResult About()
+            {
+            ViewBag.Title = "About Page";
+
+                return View();
+            }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Tite = "Contact";
+
+            return View();
+        }
     }
 }
