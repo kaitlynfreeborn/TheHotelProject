@@ -55,6 +55,61 @@ namespace KL_Hotel.Models
                 command.ExecuteNonQuery();
             }
         }
+        public void EditCustomer(Customer cust)
+        {
+            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+            using (SqlConnection sqlCon = new SqlConnection(connString))
+            {
+                SqlCommand command = new SqlCommand("spEditCustomer", sqlCon);
+                command.CommandType = CommandType.StoredProcedure;
+                //add the parameters to the command object. 
+                //also can hover over new and shows better coding than 1st below. 2nd (and after) is better
+
+
+                //bad coding
+                SqlParameter paramFirstName = new SqlParameter();
+                paramFirstName.ParameterName = "@FirstName";
+                paramFirstName.Value = cust.FirstName;
+
+                command.Parameters.Add(paramFirstName);
+
+                //good coding
+                SqlParameter paramCustomerID = new SqlParameter
+                {
+                    ParameterName = "@CustomerId",
+                    Value = cust.CustomerID
+                };
+                command.Parameters.Add(paramCustomerID);
+
+
+                SqlParameter paramLastName = new SqlParameter
+                {
+                    ParameterName = "@LastName",
+                    Value = cust.LastName
+                };
+                command.Parameters.Add(paramLastName);
+
+                SqlParameter paramUserName = new SqlParameter
+                {
+                    ParameterName = "@UserName",
+                    Value = cust.UserName
+                };
+                command.Parameters.Add(paramUserName);
+
+                SqlParameter paramPassword = new SqlParameter
+                {
+                    ParameterName = "@Password",
+                    Value = cust.Password
+                };
+                command.Parameters.Add(paramPassword);
+
+
+                //open the connection
+                sqlCon.Open();
+                //execute the procedure
+                command.ExecuteNonQuery();
+            }
+        }
         public IEnumerable<Customer> Customers
         {
             get
