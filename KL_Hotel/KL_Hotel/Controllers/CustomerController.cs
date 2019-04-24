@@ -4,6 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using KL_Hotel.Models;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.OleDb;
+using System.Configuration;
+
 
 
 namespace KL_Hotel.Controllers
@@ -40,6 +45,38 @@ namespace KL_Hotel.Controllers
             customerBusiness.AddCustomer(cust);
 
             return RedirectToAction("Index");
+
+
+        }
+        [HttpGet]
+        public ActionResult LogIn()
+            {
+                return View();
+            }
+
+        [HttpPost]
+        public ActionResult LogIn(string UserName, string Password)
+        {
+
+                string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+                OleDbConnection oleDbConnection = new OleDbConnection(connStr);
+                oleDbConnection.Open();
+
+                OleDbCommand com = new OleDbCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
+                    + "' AND [Password]='" + Password + "'", oleDbConnection);
+
+                OleDbDataReader reader = com.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    Response.Write("Welcome user");
+
+                }
+                else
+                {
+                    Response.Write("Invalid username/password");
+
+                }
+                return RedirectToAction("Index");
 
 
         }
