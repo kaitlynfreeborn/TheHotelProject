@@ -51,39 +51,15 @@ namespace KL_Hotel.Controllers
 
         }
 
+        
         [HttpGet]
         public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(string userName, string password)
-        {
-
-            Customer cust = new Customer
-            {
-                UserName = userName,
-                Password = password
-            };
-
-            customerBusinessLayer customerBusiness = new customerBusinessLayer();
-
-            //call the method in the business layer
-            customerBusiness.AddCustomer(cust);
-
-            return RedirectToAction("Index");
-
-
-        }
-        [HttpGet]
-        public ActionResult LogIn()
             {
                 return View();
             }
 
         [HttpPost]
-        public ActionResult LogIn(string UserName, string Password)
+        public ActionResult Login(string UserName, string Password)
         {
 
                 string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
