@@ -32,7 +32,7 @@ namespace KL_Hotel.Controllers
         [HttpPost]
         public ActionResult SignUp(string firstName, string lastName, string userName, string password)
         {
-            customerBusinessLayer customerBusiness = new customerBusinessLayer();
+            
             Customer cust = new Customer
             {
                 FirstName = firstName,
@@ -41,6 +41,8 @@ namespace KL_Hotel.Controllers
                 Password = password
             };
 
+            customerBusinessLayer customerBusiness = new customerBusinessLayer();
+
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
 
@@ -48,6 +50,8 @@ namespace KL_Hotel.Controllers
 
 
         }
+
+        
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -110,7 +114,7 @@ namespace KL_Hotel.Controllers
             }
 
         [HttpPost]
-        public ActionResult LogIn(string UserName, string Password)
+        public ActionResult Login(string UserName, string Password)
         {
 
                 string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
