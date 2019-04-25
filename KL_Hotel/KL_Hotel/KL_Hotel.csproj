@@ -193,6 +193,8 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\customerBusinessLayer.cs" />
     <Compile Include="Models\Home.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Models\Reservations.cs" />
     <Compile Include="Models\Rooms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -259,11 +261,11 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Customer\MyAccount.cshtml" />
-    <Content Include="Views\Customer\Reservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\customerBusinessLayer\" />
+    <Folder Include="Views\Reservations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

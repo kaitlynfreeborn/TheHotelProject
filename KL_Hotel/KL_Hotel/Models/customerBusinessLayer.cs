@@ -12,22 +12,22 @@ namespace KL_Hotel.Models
     public class customerBusinessLayer
 
     {
-        public void EditReservation(Reservation res)
+        public void EditReservation(Customer cust)
         {
-            String connString = ConfigurationManager.ConnectionStrings["AddResInfo"].ConnectionString;
+            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connString))
             {
                 SqlCommand command = new SqlCommand("spEditReservation", sqlCon);
                 command.CommandType = CommandType.StoredProcedure;
                 //add the parameters to the command object. 
 
-                SqlParameter paramFirstName = new SqlParameter
+                SqlParameter paramStartDate = new SqlParameter
                 {
-                    ParameterName = "@FirstName",
-                    Value = cust.FirstName
+                    ParameterName = "@StartDate",
+                    Value = cust.StartDate
                 };
 
-                command.Parameters.Add(paramFirstName);
+                command.Parameters.Add(paramStartDate);
 
                 SqlParameter paramCustomerID = new SqlParameter
                 {
@@ -65,9 +65,9 @@ namespace KL_Hotel.Models
                 command.ExecuteNonQuery();
             }
         }
-        public void AddReservation(Reservation res)
+        public void AddReservation(Customer cust)
         {
-            String connString = ConfigurationManager.ConnectionStrings["AddResInfo"].ConnectionString;
+            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connString))
             {
                 SqlCommand command = new SqlCommand("spAddReservation", sqlCon)
@@ -75,10 +75,10 @@ namespace KL_Hotel.Models
                     CommandType = CommandType.StoredProcedure
                 };
 
-                SqlParameter paramFirstName = new SqlParameter
+                SqlParameter paramStartDate = new SqlParameter
                 {
-                    ParameterName = "@FirstName",
-                    Value = cust.FirstName
+                    ParameterName = "@StartDate",
+                    Value = cust.StartDate
                 };
 
                 command.Parameters.Add(paramFirstName);
@@ -163,7 +163,7 @@ namespace KL_Hotel.Models
                 SqlCommand command = new SqlCommand("spEditCustomer", sqlCon);
                 command.CommandType = CommandType.StoredProcedure;
                 //add the parameters to the command object. 
-           
+
                 SqlParameter paramFirstName = new SqlParameter
                 {
                     ParameterName = "@FirstName",
@@ -244,7 +244,43 @@ namespace KL_Hotel.Models
 
             }
         }
+        public IEnumerable<Reservations> Reservations
+        {
+            get
+            {
+                String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+                List<Reservations> cust = new List<Reservations>();
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand("select * from Reservations", connection)
+                    {
+                        CommandType = CommandType.Text
+                    };
+                    connection.Open();
+                    //read the info from the database table customer and store it in reader object
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //Reservations reservation = new Reservations
+                        //{
+                        //    ReservationID = Convert.ToInt32(reader[0]),
+                        //    CustomerID = 
+                        //    StartDate = reader[1].ToString(),
+                        //    EndDate = reader[2].ToString(),
+                        //};
+                        ////add the object to the list 
+                        //cust.Add(Reservations);
+
+                    }
+                    //return the list to the calling method
+                    return cust;
+
+                }
+
+            }
 
 
+        }
     }
+
 }
