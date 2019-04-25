@@ -203,6 +203,7 @@ namespace KL_Hotel.Models
         {
             get
             {
+               
                 String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
                 List<Customer> cust = new List<Customer>();
                 using (SqlConnection connection = new SqlConnection(connString))
@@ -252,15 +253,15 @@ namespace KL_Hotel.Models
         //            SqlDataReader reader = cmd.ExecuteReader();
         //            while (reader.Read())
         //            {
-        //                //Reservations reservation = new Reservations
-        //                //{
-        //                //    ReservationID = Convert.ToInt32(reader[0]),
-        //                //    CustomerID = 
-        //                //    StartDate = reader[1].ToString(),
-        //                //    EndDate = reader[2].ToString(),
-        //                //};
-        //                ////add the object to the list 
-        //                //cust.Add(Reservations);
+        //                Reservations reservation = new Reservations
+        //                {
+        //                    ReservationID = Convert.ToInt32(reader[0]),
+        //                    CustomerID = Convert.ToInt32(reader[1]),
+        //                    StartDate = reader[2].ToDate(),
+        //                    EndDate = reader[3].ToDate(),
+        //                };
+        //                //add the object to the list 
+        //                cust.Add(Reservations);
 
         //            }
         //            //return the list to the calling method
@@ -271,7 +272,7 @@ namespace KL_Hotel.Models
         //    }
 
 
-        //}
+       // }
     }
 
 }
