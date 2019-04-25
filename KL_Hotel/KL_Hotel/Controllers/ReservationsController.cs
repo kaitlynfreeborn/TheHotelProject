@@ -77,32 +77,32 @@ namespace KL_Hotel.Models
             return RedirectToAction("Index");
         }
 
-        //[HttpGet]
-        //public ActionResult Delete(int id)
-        //{
-        //    CustomerBusinessLayer cbl = new CustomerBusinessLayer();
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
 
-        //    //fetches all the values into the specific object with customer (gets all info so don't have to type it all out)
-        //    Customer customer = cbl.Customers.Single(cust => cust.CustomerID == id);
+            fetches all the values into the specific object with customer(gets all info so don't have to type it all out)
+            Customer customer = cbl.Customers.Single(cust => cust.CustomerID == id);
 
-        //    return View(customer);
-        //}
+            return View(customer);
+        }
 
 
-        //[HttpPost]
-        //public ActionResult Delete(int id, string confirmdelete)
-        //{
-        //    Customer cust = new Customer()
-        //    {
-        //        CustomerID = id,
+        [HttpPost]
+        public ActionResult Delete(int id, string confirmdelete)
+        {
+            Customer cust = new Customer()
+            {
+                CustomerID = id,
 
-        //    };
+            };
 
-        //    CustomerBusinessLayer cbl = new CustomerBusinessLayer();
-        //    cbl.DeleteCustomer(cust);
+            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
+            cbl.DeleteCustomer(cust);
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
         [HttpGet]
 
         public ActionResult LogIn()
