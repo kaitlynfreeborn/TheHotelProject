@@ -255,17 +255,17 @@
     <Content Include="Views\Rooms\Room.cshtml" />
     <Content Include="Views\Customer\SignUp.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Customer\MyAccount.cshtml" />
+    <Content Include="Views\Reservations\BookReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\customerBusinessLayer\" />
-    <Folder Include="Views\Reservations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
