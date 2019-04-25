@@ -12,95 +12,95 @@ namespace KL_Hotel.Models
     public class CustomerBusinessLayer
 
     {
-        public void EditReservation(Reservations res)
-        {
-            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-            using (SqlConnection sqlCon = new SqlConnection(connString))
-            {
-                SqlCommand command = new SqlCommand("spEditReservation", sqlCon);
-                command.CommandType = CommandType.StoredProcedure;
-                //add the parameters to the command object. 
+        //public void EditReservation(Reservations res)
+        //{
+        //    String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+        //    using (SqlConnection sqlCon = new SqlConnection(connString))
+        //    {
+        //        SqlCommand command = new SqlCommand("spEditReservation", sqlCon);
+        //        command.CommandType = CommandType.StoredProcedure;
+        //        //add the parameters to the command object. 
 
-                SqlParameter paramStartDate = new SqlParameter
-                {
-                    ParameterName = "@StartDate",
-                    Value = res.StartDate
-                };
+        //        SqlParameter paramStartDate = new SqlParameter
+        //        {
+        //            ParameterName = "@StartDate",
+        //            Value = res.StartDate
+        //        };
 
-                command.Parameters.Add(paramStartDate);
+        //        command.Parameters.Add(paramStartDate);
 
-                SqlParameter paramReservationID = new SqlParameter
-                {
-                    ParameterName = "@ReservationID",
-                    Value = res.ReservationID
-                };
-                command.Parameters.Add(paramReservationID);
+        //        SqlParameter paramReservationID = new SqlParameter
+        //        {
+        //            ParameterName = "@ReservationID",
+        //            Value = res.ReservationID
+        //        };
+        //        command.Parameters.Add(paramReservationID);
 
-                SqlParameter paramEndDate = new SqlParameter
-                {
-                    ParameterName = "@EndDate",
-                    Value = res.EndDate
-                };
-                command.Parameters.Add(paramEndDate);
+        //        SqlParameter paramEndDate = new SqlParameter
+        //        {
+        //            ParameterName = "@EndDate",
+        //            Value = res.EndDate
+        //        };
+        //        command.Parameters.Add(paramEndDate);
 
-                SqlParameter paramRoomType = new SqlParameter
-                {
-                    ParameterName = "@RoomType",
-                    Value = res.RoomType
-                };
-                command.Parameters.Add(paramRoomType);
+        //        SqlParameter paramRoomType = new SqlParameter
+        //        {
+        //            ParameterName = "@RoomType",
+        //            Value = res.RoomType
+        //        };
+        //        command.Parameters.Add(paramRoomType);
 
-                //open the connection
-                sqlCon.Open();
-                //execute the procedure
-                command.ExecuteNonQuery();
-            }
-        }
-        public void AddReservation(Reservations res)
-        {
-            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-            using (SqlConnection sqlCon = new SqlConnection(connString))
-            {
-                SqlCommand command = new SqlCommand("spAddReservation", sqlCon)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+        //        //open the connection
+        //        sqlCon.Open();
+        //        //execute the procedure
+        //        command.ExecuteNonQuery();
+        //    }
+        //}
+        //public void AddReservation(Reservations res)
+        //{
+        //    String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+        //    using (SqlConnection sqlCon = new SqlConnection(connString))
+        //    {
+        //        SqlCommand command = new SqlCommand("spAddReservation", sqlCon)
+        //        {
+        //            CommandType = CommandType.StoredProcedure
+        //        };
 
-                SqlParameter paramStartDate = new SqlParameter
-                {
-                    ParameterName = "@StartDate",
-                    Value = res.StartDate
-                };
+        //        SqlParameter paramStartDate = new SqlParameter
+        //        {
+        //            ParameterName = "@StartDate",
+        //            Value = res.StartDate
+        //        };
 
-                command.Parameters.Add(paramStartDate);
+        //        command.Parameters.Add(paramStartDate);
 
-                SqlParameter paramReservationID = new SqlParameter
-                {
-                    ParameterName = "@ReservationID",
-                    Value = res.ReservationID
-                };
-                command.Parameters.Add(paramReservationID);
+        //        SqlParameter paramReservationID = new SqlParameter
+        //        {
+        //            ParameterName = "@ReservationID",
+        //            Value = res.ReservationID
+        //        };
+        //        command.Parameters.Add(paramReservationID);
 
-                SqlParameter paramEndDate = new SqlParameter
-                {
-                    ParameterName = "@EndDate",
-                    Value = res.EndDate
-                };
-                command.Parameters.Add(paramEndDate);
+        //        SqlParameter paramEndDate = new SqlParameter
+        //        {
+        //            ParameterName = "@EndDate",
+        //            Value = res.EndDate
+        //        };
+        //        command.Parameters.Add(paramEndDate);
 
-                SqlParameter paramRoomType = new SqlParameter
-                {
-                    ParameterName = "@RoomType",
-                    Value = res.RoomType
-                };
-                command.Parameters.Add(paramRoomType);
+        //        SqlParameter paramRoomType = new SqlParameter
+        //        {
+        //            ParameterName = "@RoomType",
+        //            Value = res.RoomType
+        //        };
+        //        command.Parameters.Add(paramRoomType);
 
-                //open the connection
-                sqlCon.Open();
-                //execute the procedure
-                command.ExecuteNonQuery();
-            }
-        }
+        //        //open the connection
+        //        sqlCon.Open();
+        //        //execute the procedure
+        //        command.ExecuteNonQuery();
+        //    }
+        //}
         public void AddCustomer(Customer cust)
         {
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
