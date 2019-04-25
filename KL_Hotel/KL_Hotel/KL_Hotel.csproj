@@ -184,7 +184,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,7 +193,6 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\customerBusinessLayer.cs" />
     <Compile Include="Models\Home.cs" />
-    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Rooms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -253,15 +251,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Rooms\Room.cshtml" />
-    <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Customer\SignUp.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Reservations\ReservationView.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Index.cshtml" />
+    <Content Include="Views\Customer\MyAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
