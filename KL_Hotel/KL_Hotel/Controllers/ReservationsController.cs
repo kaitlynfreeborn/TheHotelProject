@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.OleDb;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KL_Hotel.Models;
 
 namespace KL_Hotel.Models
 {
@@ -57,15 +60,15 @@ namespace KL_Hotel.Models
 
 
         [HttpPost]
-        public ActionResult Edit(int id, )
+        public ActionResult Edit(int id, string firstName, string lastName, string userName, string password)
         {
             Customer cust = new Customer()
             {
                 CustomerID = id,
-                FirstName = FirstName,
-                LastName = LastName,
-                UserName = UserName,
-                Password = Password
+                FirstName = firstName,
+                LastName = lastName,
+                UserName = userName,
+                Password = password
             };
 
             CustomerBusinessLayer cbl = new CustomerBusinessLayer();
@@ -132,5 +135,4 @@ namespace KL_Hotel.Models
 
         }
     }
-}
 }
