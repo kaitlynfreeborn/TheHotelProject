@@ -191,7 +191,7 @@
     </Compile>
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\customerBusinessLayer.cs" />
+    <Compile Include="Models\CustomerBusinessLayer.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Models\Reservations.cs" />

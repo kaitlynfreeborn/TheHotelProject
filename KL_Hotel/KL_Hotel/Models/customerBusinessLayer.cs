@@ -9,10 +9,10 @@ using System.Data.SqlClient;
 
 namespace KL_Hotel.Models
 {
-    public class customerBusinessLayer
+    public class CustomerBusinessLayer
 
     {
-        public void EditReservation(Customer cust)
+        public void EditReservation(Reservations res)
         {
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connString))
@@ -24,40 +24,31 @@ namespace KL_Hotel.Models
                 SqlParameter paramStartDate = new SqlParameter
                 {
                     ParameterName = "@StartDate",
-                    Value = cust.StartDate
+                    Value = res.StartDate
                 };
 
                 command.Parameters.Add(paramStartDate);
 
-                SqlParameter paramCustomerID = new SqlParameter
+                SqlParameter paramReservationID = new SqlParameter
                 {
-                    ParameterName = "@CustomerId",
-                    Value = cust.CustomerID
+                    ParameterName = "@ReservationID",
+                    Value = res.ReservationID
                 };
-                command.Parameters.Add(paramCustomerID);
+                command.Parameters.Add(paramReservationID);
 
-
-                SqlParameter paramLastName = new SqlParameter
+                SqlParameter paramEndDate = new SqlParameter
                 {
-                    ParameterName = "@LastName",
-                    Value = cust.LastName
+                    ParameterName = "@EndDate",
+                    Value = res.EndDate
                 };
-                command.Parameters.Add(paramLastName);
+                command.Parameters.Add(paramEndDate);
 
-                SqlParameter paramUserName = new SqlParameter
+                SqlParameter paramRoomType = new SqlParameter
                 {
-                    ParameterName = "@UserName",
-                    Value = cust.UserName
+                    ParameterName = "@RoomType",
+                    Value = res.RoomType
                 };
-                command.Parameters.Add(paramUserName);
-
-                SqlParameter paramPassword = new SqlParameter
-                {
-                    ParameterName = "@Password",
-                    Value = cust.Password
-                };
-                command.Parameters.Add(paramPassword);
-
+                command.Parameters.Add(paramRoomType);
 
                 //open the connection
                 sqlCon.Open();
@@ -65,7 +56,7 @@ namespace KL_Hotel.Models
                 command.ExecuteNonQuery();
             }
         }
-        public void AddReservation(Customer cust)
+        public void AddReservation(Reservations res)
         {
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connString))
@@ -78,31 +69,31 @@ namespace KL_Hotel.Models
                 SqlParameter paramStartDate = new SqlParameter
                 {
                     ParameterName = "@StartDate",
-                    Value = cust.StartDate
+                    Value = res.StartDate
                 };
 
-                command.Parameters.Add(paramFirstName);
+                command.Parameters.Add(paramStartDate);
 
-                SqlParameter paramLastName = new SqlParameter
+                SqlParameter paramReservationID = new SqlParameter
                 {
-                    ParameterName = "@LastName",
-                    Value = cust.LastName
+                    ParameterName = "@ReservationID",
+                    Value = res.ReservationID
                 };
-                command.Parameters.Add(paramLastName);
+                command.Parameters.Add(paramReservationID);
 
-                SqlParameter paramUserName = new SqlParameter
+                SqlParameter paramEndDate = new SqlParameter
                 {
-                    ParameterName = "@UserName",
-                    Value = cust.UserName
+                    ParameterName = "@EndDate",
+                    Value = res.EndDate
                 };
-                command.Parameters.Add(paramUserName);
+                command.Parameters.Add(paramEndDate);
 
-                SqlParameter paramPassword = new SqlParameter
+                SqlParameter paramRoomType = new SqlParameter
                 {
-                    ParameterName = "@Password",
-                    Value = cust.Password
+                    ParameterName = "@RoomType",
+                    Value = res.RoomType
                 };
-                command.Parameters.Add(paramPassword);
+                command.Parameters.Add(paramRoomType);
 
                 //open the connection
                 sqlCon.Open();

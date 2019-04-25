@@ -18,7 +18,7 @@ namespace KL_Hotel.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            customerBusinessLayer customerBusiness = new customerBusinessLayer();
+            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
             List<Customer> customer = customerBusiness.Customers.ToList();
             return View(customer);
         }
@@ -41,7 +41,7 @@ namespace KL_Hotel.Controllers
                 Password = password
             };
 
-            customerBusinessLayer customerBusiness = new customerBusinessLayer();
+            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
 
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
@@ -55,7 +55,7 @@ namespace KL_Hotel.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            customerBusinessLayer cbl = new customerBusinessLayer();
+            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
 
             //fetches all the values into the specific object with customer (gets all info so don't have to type it all out)
             Customer customer = cbl.Customers.Single(cust => cust.CustomerID == id);
@@ -76,7 +76,7 @@ namespace KL_Hotel.Controllers
                 Password = Password
             };
 
-            customerBusinessLayer cbl = new customerBusinessLayer();
+            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
             cbl.EditCustomer(cust);
 
             return RedirectToAction("Index");
@@ -84,7 +84,7 @@ namespace KL_Hotel.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            customerBusinessLayer cbl = new customerBusinessLayer();
+            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
 
             //fetches all the values into the specific object with customer (gets all info so don't have to type it all out)
             Customer customer = cbl.Customers.Single(cust => cust.CustomerID == id);
@@ -102,7 +102,7 @@ namespace KL_Hotel.Controllers
 
             };
 
-            customerBusinessLayer cbl = new customerBusinessLayer();
+            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
             cbl.DeleteCustomer(cust);
 
             return RedirectToAction("Index");
