@@ -203,6 +203,7 @@ namespace KL_Hotel.Models
         {
             get
             {
+               
                 String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
                 List<Customer> cust = new List<Customer>();
                 using (SqlConnection connection = new SqlConnection(connString))
@@ -235,43 +236,43 @@ namespace KL_Hotel.Models
 
             }
         }
-        public IEnumerable<Reservations> Reservations
-        {
-            get
-            {
-                String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-                List<Reservations> cust = new List<Reservations>();
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    SqlCommand cmd = new SqlCommand("select * from Reservations", connection)
-                    {
-                        CommandType = CommandType.Text
-                    };
-                    connection.Open();
-                    //read the info from the database table customer and store it in reader object
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        //Reservations reservation = new Reservations
-                        //{
-                        //    ReservationID = Convert.ToInt32(reader[0]),
-                        //    CustomerID = 
-                        //    StartDate = reader[1].ToString(),
-                        //    EndDate = reader[2].ToString(),
-                        //};
-                        ////add the object to the list 
-                        //cust.Add(Reservations);
+        //public IEnumerable<Reservations> Reservations
+        //{
+        //    get
+        //    {
+        //        String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+        //        List<Reservations> cust = new List<Reservations>();
+        //        using (SqlConnection connection = new SqlConnection(connString))
+        //        {
+        //            SqlCommand cmd = new SqlCommand("select * from Reservations", connection)
+        //            {
+        //                CommandType = CommandType.Text
+        //            };
+        //            connection.Open();
+        //            //read the info from the database table customer and store it in reader object
+        //            SqlDataReader reader = cmd.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                Reservations reservation = new Reservations
+        //                {
+        //                    ReservationID = Convert.ToInt32(reader[0]),
+        //                    CustomerID = Convert.ToInt32(reader[1]),
+        //                    StartDate = reader[2].ToDate(),
+        //                    EndDate = reader[3].ToDate(),
+        //                };
+        //                //add the object to the list 
+        //                cust.Add(Reservations);
 
-                    }
-                    //return the list to the calling method
-                    return cust;
+        //            }
+        //            //return the list to the calling method
+        //            return cust;
 
-                }
+        //        }
 
-            }
+        //    }
 
 
-        }
+       // }
     }
 
 }
