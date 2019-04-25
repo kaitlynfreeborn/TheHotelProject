@@ -63,17 +63,15 @@ namespace KL_Hotel.Models
                 SqlCommand command = new SqlCommand("spEditCustomer", sqlCon);
                 command.CommandType = CommandType.StoredProcedure;
                 //add the parameters to the command object. 
-                //also can hover over new and shows better coding than 1st below. 2nd (and after) is better
-
-
-                //bad coding
-                SqlParameter paramFirstName = new SqlParameter();
-                paramFirstName.ParameterName = "@FirstName";
-                paramFirstName.Value = cust.FirstName;
+           
+                SqlParameter paramFirstName = new SqlParameter
+                {
+                    ParameterName = "@FirstName",
+                    Value = cust.FirstName
+                };
 
                 command.Parameters.Add(paramFirstName);
 
-                //good coding
                 SqlParameter paramCustomerID = new SqlParameter
                 {
                     ParameterName = "@CustomerId",
