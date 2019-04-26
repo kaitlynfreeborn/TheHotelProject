@@ -263,6 +263,7 @@
     <Content Include="Views\Customer\MyAccount.cshtml" />
     <Content Include="Views\Reservations\BookReservation.cshtml" />
     <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\Reservations\EditReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
