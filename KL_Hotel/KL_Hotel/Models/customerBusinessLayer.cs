@@ -12,6 +12,34 @@ namespace KL_Hotel.Models
     public class CustomerBusinessLayer
 
     {
+        public void DeleteReservation(Reservations res)
+        {
+            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+            using (SqlConnection sqlCon = new SqlConnection(connString))
+            {
+                SqlCommand command = new SqlCommand("spDeleteReservation", sqlCon)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                //add the parameters to the command object. 
+
+                SqlParameter paramReservationID = new SqlParameter
+                {
+                    ParameterName = "@ReservationID",
+                    Value = res.ReservationID
+                };
+                command.Parameters.Add(paramReservationID);
+
+
+
+                //open the connection
+                sqlCon.Open();
+                //execute the procedure
+                command.ExecuteNonQuery();
+            }
+
+
+        }
         public void EditReservation(Reservations res)
         {
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
@@ -236,43 +264,46 @@ namespace KL_Hotel.Models
 
             }
         }
-        //public IEnumerable<Reservations> Reservations
-        //{
-        //    get
-        //    {
-        //        String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-        //        List<Reservations> cust = new List<Reservations>();
-        //        using (SqlConnection connection = new SqlConnection(connString))
-        //        {
-        //            SqlCommand cmd = new SqlCommand("select * from Reservations", connection)
-        //            {
-        //                CommandType = CommandType.Text
-        //            };
-        //            connection.Open();
-        //            //read the info from the database table customer and store it in reader object
-        //            SqlDataReader reader = cmd.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                Reservations reservation = new Reservations
-        //                {
-        //                    ReservationID = Convert.ToInt32(reader[0]),
-        //                    CustomerID = Convert.ToInt32(reader[1]),
-        //                    StartDate = reader[2].ToDate(),
-        //                    EndDate = reader[3].ToDate(),
-        //                };
-        //                //add the object to the list 
-        //                cust.Add(Reservations);
+        public IEnumerable<Reservations> Reservations
+        {
+            get
+            {
+                String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+                List<Reservations> cust = new List<Reservations>();
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand("select * from Reservations", connection)
+                    {
+                        CommandType = CommandType.Text
+                    };
+                    connection.Open();
+                   // read the info from the database table reservations and store it in reader object
+               
+                //    SqlDataReader reader = cmd.ExecuteReader();
+                //    while (reader.Read())
+                //    {
+                //        Reservations reservation = new Reservations
+                //        {
+                //            ReservationID = Convert.ToInt32(reader[0]),
+                //            CustomerID = Convert.ToInt32(reader[1]),
+                //            StartDate = reader[2].ToString("MM/dd/yyyy"),
+                //            EndDate = reader[3].ToString("MM/dd/yyyy"),
+                //            RoomType = reader[4].ToString();
+                //    };
+                //    //add the object to the list 
+                //    cust.Add(Reservations);
 
-        //            }
-        //            //return the list to the calling method
-        //            return cust;
+                //}
 
-        //        }
+                //return the list to the calling method
+                return cust;
 
-        //    }
+                }
+
+            }
 
 
-       // }
+        }
     }
 
 }

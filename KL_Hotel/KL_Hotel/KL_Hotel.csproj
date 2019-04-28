@@ -248,21 +248,20 @@
     <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\HomeIndex.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Rooms\RoomIndex.cshtml" />
     <Content Include="Views\Rooms\Room.cshtml" />
     <Content Include="Views\Customer\SignUp.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Customer\CustIndex.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Index.cshtml" />
-    <Content Include="Views\Customer\MyAccount.cshtml" />
     <Content Include="Views\Reservations\BookReservation.cshtml" />
-    <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\Reservations\ResIndex.cshtml" />
+    <Content Include="Views\Reservations\EditReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

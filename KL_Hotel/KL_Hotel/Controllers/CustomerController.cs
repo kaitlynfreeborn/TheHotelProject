@@ -46,7 +46,7 @@ namespace KL_Hotel.Controllers
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyAccount");
 
 
         }
@@ -79,7 +79,7 @@ namespace KL_Hotel.Controllers
             CustomerBusinessLayer cbl = new CustomerBusinessLayer();
             cbl.EditCustomer(cust);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyAccount");
         }
         
 
