@@ -16,7 +16,7 @@ namespace KL_Hotel.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
-        public ActionResult Index()
+        public ActionResult CustIndex()
         {
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
             List<Customer> customer = customerBusiness.Customers.ToList();
