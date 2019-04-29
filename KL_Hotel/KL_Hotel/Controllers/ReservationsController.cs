@@ -12,9 +12,9 @@ namespace KL_Hotel.Models
     public class ReservationsController : Controller
     {
         //Get Reservation
-        public ActionResult Index()
+        public ActionResult ResIndex()
         {
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+            ReservationBusinessLayer customerBusiness = new ReservationBusinessLayer();
             List<Reservations> reservations = customerBusiness.Reservations.ToList();
             return View(reservations);
         }
@@ -36,12 +36,12 @@ namespace KL_Hotel.Models
                 RoomType = RoomType
             };
 
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-
+            ReservationBusinessLayer customerBusiness = new ReservationBusinessLayer();
+            
             //call the method in the business layer
             customerBusiness.AddReservation(res);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ResIndex");
 
 
         }
@@ -50,7 +50,7 @@ namespace KL_Hotel.Models
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
+            ReservationBusinessLayer cbl = new ReservationBusinessLayer();
 
             //fetches all the values into the specific object with customer (gets all info so don't have to type it all out)
            Reservations reservation = cbl.Reservations.Single(res => res.ReservationID == id);
@@ -74,13 +74,13 @@ namespace KL_Hotel.Models
             CustomerBusinessLayer cbl = new CustomerBusinessLayer();
             cbl.EditCustomer(cust);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ResIndex");
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
+            ReservationBusinessLayer cbl = new ReservationBusinessLayer();
 
             //fetches all the values into the specific object with customer(gets all info so don't have to type it all out)
             Reservations reservation  = cbl.Reservations.Single(res => res.ReservationID == id);
@@ -98,10 +98,10 @@ namespace KL_Hotel.Models
 
             };
 
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
+            ReservationBusinessLayer cbl = new ReservationBusinessLayer();
             cbl.DeleteReservation(res);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ResIndex");
         }
         [HttpGet]
 
@@ -111,7 +111,7 @@ namespace KL_Hotel.Models
         }
 
         [HttpPost]
-        public ActionResult Login(string UserName, string Password)
+        public ActionResult LogIn(string UserName, string Password)
         {
 
             string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
@@ -132,7 +132,7 @@ namespace KL_Hotel.Models
                 Response.Write("Invalid username/password");
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("ResIndex");
 
 
         }
