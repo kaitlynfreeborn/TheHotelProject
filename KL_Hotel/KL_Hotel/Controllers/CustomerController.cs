@@ -114,7 +114,40 @@ namespace KL_Hotel.Controllers
                 }
                 return RedirectToAction("CustIndex");
 
+            //String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+            //using (SqlConnection sqlCon = new SqlConnection("SELECT * FROM Login WHERE [User_ID] ='" + UserName
+            //+ "' AND [Password]='" + Password + "'", sqlCon))
+            //{
 
-        }
-    }
+            //    SqlDataReader reader = com.ExecuteReader();
+            //    //read the info from the database table customer and store it in reader object
+            //    SqlDataReader reader = cmd.ExecuteReader();
+            //    while (reader.Read())
+            //    {
+            //        Customer customer = new Customer
+            //        {
+            //            CustomerID = Convert.ToInt32(reader[0]),
+            //            UserName = reader[1].ToString(),
+            //            Password = reader[2].ToString()
+            //        };
+            //        if (reader.HasRows)
+            //        {
+            //            Response.Write("Welcome user");
+            //            //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
+            //        }
+            //        else
+            //        {
+            //            Response.Write("Invalid username/password");
+
+            //        }
+
+            //        //open the connection
+            //        sqlCon.Open();
+            //        //execute the procedure
+            //        command.ExecuteNonQuery();
+
+            //        return RedirectToAction("CustIndex");
+
+                }
+            }
 }
