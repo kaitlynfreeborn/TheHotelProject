@@ -10,7 +10,7 @@ namespace KL_Hotel.Controllers
     public class RoomsController : Controller
     {
         // GET: Rooms
-        public ActionResult Index()
+        public ActionResult RoomsIndex()
         {
             Rooms King = new Rooms()
             {
