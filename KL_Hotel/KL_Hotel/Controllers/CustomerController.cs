@@ -46,7 +46,7 @@ namespace KL_Hotel.Controllers
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
 
-            return RedirectToAction("MyAccount");
+            return RedirectToAction("CustIndex");
 
 
         }
@@ -79,7 +79,7 @@ namespace KL_Hotel.Controllers
             CustomerBusinessLayer cbl = new CustomerBusinessLayer();
             cbl.EditCustomer(cust);
 
-            return RedirectToAction("MyAccount");
+            return RedirectToAction("CustIndex");
         }
         
 
@@ -90,7 +90,7 @@ namespace KL_Hotel.Controllers
             }
 
         [HttpPost]
-        public ActionResult Login(string UserName, string Password)
+        public ActionResult LogIn(string UserName, string Password)
         {
 
                 string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
@@ -111,7 +111,7 @@ namespace KL_Hotel.Controllers
                     Response.Write("Invalid username/password");
 
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("CustIndex");
 
 
         }
