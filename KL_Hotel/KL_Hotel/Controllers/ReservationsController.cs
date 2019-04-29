@@ -14,8 +14,8 @@ namespace KL_Hotel.Models
         //Get Reservation
         public ActionResult Index()
         {
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            List<Reservations> reservations = customerBusiness.Reservations.ToList();
+            ReservationBusinessLayer reservationBusiness = new ReservationBusinessLayer();
+            List<Reservations> reservations = reservationBusiness.Reservations.ToList();
             return View(reservations);
         }
 
@@ -36,10 +36,10 @@ namespace KL_Hotel.Models
                 RoomType = RoomType
             };
 
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+            ReservationBusinessLayer reservationBusiness = new ReservationBusinessLayer();
 
             //call the method in the business layer
-            customerBusiness.AddReservation(res);
+            reservationBusiness.AddReservation(res);
 
             return RedirectToAction("Index");
 
@@ -50,7 +50,7 @@ namespace KL_Hotel.Models
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
+            ReservationBusinessLayer cbl = new ReservationBusinessLayer();
 
             //fetches all the values into the specific object with customer (gets all info so don't have to type it all out)
            Reservations reservation = cbl.Reservations.Single(res => res.ReservationID == id);
@@ -60,19 +60,19 @@ namespace KL_Hotel.Models
 
 
         [HttpPost]
-        public ActionResult Edit(int id, string firstName, string lastName, string userName, string password)
+        public ActionResult Edit(int id, int cid, DateTime sDate, DateTime eDate, String roomType)
         {
-            Customer cust = new Customer()
+            Reservations res = new Reservations()
             {
-                CustomerID = id,
-                FirstName = firstName,
-                LastName = lastName,
-                UserName = userName,
-                Password = password
+                ReservationID = id,
+                CustomerID = cid,
+                StartDate = sDate,
+                EndDate = eDate,
+                RoomType = roomType
             };
 
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
-            cbl.EditCustomer(cust);
+            ReservationBusinessLayer rbl = new ReservationBusinessLayer();
+            rbl.EditReservation(res);
 
             return RedirectToAction("Index");
         }
@@ -80,10 +80,10 @@ namespace KL_Hotel.Models
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
+            ReservationBusinessLayer rbl = new ReservationBusinessLayer();
 
             //fetches all the values into the specific object with customer(gets all info so don't have to type it all out)
-            Reservations reservation  = cbl.Reservations.Single(res => res.ReservationID == id);
+            Reservations reservation  = rbl.Reservations.Single(res => res.ReservationID == id);
 
             return View(reservation);
         }
@@ -98,8 +98,8 @@ namespace KL_Hotel.Models
 
             };
 
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
-            cbl.DeleteReservation(res);
+            ReservationBusinessLayer rbl = new ReservationBusinessLayer();
+            rbl.DeleteReservation(res);
 
             return RedirectToAction("Index");
         }
