@@ -21,6 +21,7 @@ namespace KL_Hotel.Controllers
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
             List<Customer> customer = customerBusiness.Customers.ToList();
             return View(customer);
+            //this should be where if session yes
         }
 
         [HttpGet]
@@ -104,7 +105,7 @@ namespace KL_Hotel.Controllers
                 if (reader.HasRows)
                 {
                     Response.Write("Welcome user");
-
+                //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
                 }
                 else
                 {
