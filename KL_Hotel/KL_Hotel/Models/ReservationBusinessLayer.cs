@@ -31,8 +31,6 @@ namespace KL_Hotel.Models
                 };
                 command.Parameters.Add(paramReservationID);
 
-
-
                 //open the connection
                 sqlCon.Open();
                 //execute the procedure
@@ -170,3 +168,4 @@ namespace KL_Hotel.Models
 
         }
     }
+}

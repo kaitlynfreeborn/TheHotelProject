@@ -12,10 +12,10 @@ namespace KL_Hotel.Models
     public class ReservationsController : Controller
     {
         //Get Reservation
-        public ActionResult ResIndex()
+        public ActionResult Index()
         {
-            ReservationBusinessLayer customerBusiness = new ReservationBusinessLayer();
-            List<Reservations> reservations = customerBusiness.Reservations.ToList();
+            ReservationBusinessLayer reservationBusiness = new ReservationBusinessLayer();
+            List<Reservations> reservations = reservationBusiness.Reservations.ToList();
             return View(reservations);
         }
 
@@ -36,12 +36,12 @@ namespace KL_Hotel.Models
                 RoomType = RoomType
             };
 
-            ReservationBusinessLayer customerBusiness = new ReservationBusinessLayer();
-            
-            //call the method in the business layer
-            customerBusiness.AddReservation(res);
+            ReservationBusinessLayer reservationBusiness = new ReservationBusinessLayer();
 
-            return RedirectToAction("ResIndex");
+            //call the method in the business layer
+            reservationBusiness.AddReservation(res);
+
+            return RedirectToAction("Index");
 
 
         }
@@ -60,30 +60,30 @@ namespace KL_Hotel.Models
 
 
         [HttpPost]
-        public ActionResult Edit(int id, string firstName, string lastName, string userName, string password)
+        public ActionResult Edit(int id, int cid, DateTime sDate, DateTime eDate, String roomType)
         {
-            Customer cust = new Customer()
+            Reservations res = new Reservations()
             {
-                CustomerID = id,
-                FirstName = firstName,
-                LastName = lastName,
-                UserName = userName,
-                Password = password
+                ReservationID = id,
+                CustomerID = cid,
+                StartDate = sDate,
+                EndDate = eDate,
+                RoomType = roomType
             };
 
-            CustomerBusinessLayer cbl = new CustomerBusinessLayer();
-            cbl.EditCustomer(cust);
+            ReservationBusinessLayer rbl = new ReservationBusinessLayer();
+            rbl.EditReservation(res);
 
-            return RedirectToAction("ResIndex");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            ReservationBusinessLayer cbl = new ReservationBusinessLayer();
+            ReservationBusinessLayer rbl = new ReservationBusinessLayer();
 
             //fetches all the values into the specific object with customer(gets all info so don't have to type it all out)
-            Reservations reservation  = cbl.Reservations.Single(res => res.ReservationID == id);
+            Reservations reservation  = rbl.Reservations.Single(res => res.ReservationID == id);
 
             return View(reservation);
         }
@@ -98,10 +98,10 @@ namespace KL_Hotel.Models
 
             };
 
-            ReservationBusinessLayer cbl = new ReservationBusinessLayer();
-            cbl.DeleteReservation(res);
+            ReservationBusinessLayer rbl = new ReservationBusinessLayer();
+            rbl.DeleteReservation(res);
 
-            return RedirectToAction("ResIndex");
+            return RedirectToAction("Index");
         }
         [HttpGet]
 
@@ -111,7 +111,7 @@ namespace KL_Hotel.Models
         }
 
         [HttpPost]
-        public ActionResult LogIn(string UserName, string Password)
+        public ActionResult Login(string UserName, string Password)
         {
 
             string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
@@ -132,7 +132,7 @@ namespace KL_Hotel.Models
                 Response.Write("Invalid username/password");
 
             }
-            return RedirectToAction("ResIndex");
+            return RedirectToAction("Index");
 
 
         }

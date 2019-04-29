@@ -262,9 +262,10 @@
     <Content Include="Views\Customer\LogIn.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Index.cshtml" />
-    <Content Include="Views\Reservations\BookReservation.cshtml" />
+    <Content Include="Views\Reservations\AddReservation.cshtml" />
     <Content Include="Views\Reservations\ResIndex.cshtml" />
-    <Content Include="Views\Reservations\EditReservations.cshtml" />
+    <Content Include="Views\Reservations\EditReservation.cshtml" />
+    <Content Include="Views\Reservations\DeleteReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
