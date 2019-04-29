@@ -168,4 +168,3 @@ namespace KL_Hotel.Models
 
         }
     }
-}
