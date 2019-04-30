@@ -6,17 +6,8 @@ using System.Web.Mvc;
 using KL_Hotel.Models;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OleDb;
 using System.Configuration;
 using System.Data.SqlClient;
-
-
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
-//using KL_Hotel.Models;
 
 namespace KL_Hotel.Controllers
 {
@@ -32,7 +23,7 @@ namespace KL_Hotel.Controllers
             //            }
             string u;
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            u = Session["UserName"].ToString();
+            u = Session["CustomerID"].ToString();
             return View();
             //this should be where if session yes
         }
@@ -52,7 +43,6 @@ namespace KL_Hotel.Controllers
             {
                 FirstName = firstName,
                 LastName = lastName,
-                UserName = userName,
                 Password = password
             };
 
@@ -87,7 +77,6 @@ namespace KL_Hotel.Controllers
                 CustomerID = id,
                 FirstName = FirstName,
                 LastName = LastName,
-                UserName = UserName,
                 Password = Password
             };
 
@@ -104,13 +93,13 @@ namespace KL_Hotel.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogIn(string UserName, string Password)
+        public ActionResult LogIn(int CustomerID, string Password)
         {
 
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [UserName] ='" + UserName
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [CustomerID] ='" + CustomerID
                + "' AND [Password]='" + Password + "'", con);
 
                 //open the connection
@@ -130,12 +119,12 @@ namespace KL_Hotel.Controllers
                 if (reader.HasRows)
                 {
                     Response.Write("Welcome user");
-                    Session["UserName"] = UserName;
+                    Session["CustomerID"] = CustomerID;
                     //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
                 }
                 else
                 {
-                    Response.Write("Invalid username/password");
+                    Response.Write("Invalid Customer ID/Password");
 
                 }
 
@@ -145,7 +134,7 @@ namespace KL_Hotel.Controllers
                 // return RedirectToAction("CustIndex");
                 return View();
             }
-            // Session["UserID"] = firstName;
+          
         }
     }
 }
