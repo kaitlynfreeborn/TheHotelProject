@@ -2,47 +2,47 @@
 
 @{
     ViewBag.Title = "Delete Reservation";
-}
+<div class="container">
+    <h2>Delete Reservation</h2>
 
-<h2>Delete Reservation</h2>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Reservation</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Reservation</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomType)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RoomType)
+            </dd>
+        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoomType)
-        </dd>
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to Reservations", "ResIndex")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to Reservations", "ResIndex")
+            </div>
+        }
+    </div>
+    </div>
