@@ -146,12 +146,6 @@ namespace KL_Hotel.Models
                         UserName = reader[3].ToString(),
                         Password = reader[4].ToString()
                     };
-
-
-
-
-
-
                 }
 
             }
