@@ -18,6 +18,13 @@ namespace KL_Hotel
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+           
+        }
+
+        void OnSessionStart(...)
+        {
+            HttpContext.Current.Session.Add("CustomerID", new ());
         }
     }
 }
