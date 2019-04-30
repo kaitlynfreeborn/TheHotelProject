@@ -24,7 +24,7 @@ namespace KL_Hotel.Controllers
                 CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
                 Customer cust = new Customer();
                 u = Session["CustomerID"].ToString();
-                if (u != null)
+                if (u != null)  
                 {
 
 
