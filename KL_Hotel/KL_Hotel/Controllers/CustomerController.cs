@@ -10,6 +10,14 @@ using System.Data.OleDb;
 using System.Configuration;
 using System.Data.SqlClient;
 
+
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Web;
+//using System.Web.Mvc;
+//using KL_Hotel.Models;
+
 namespace KL_Hotel.Controllers
 {
     public class CustomerController : Controller
@@ -37,7 +45,8 @@ namespace KL_Hotel.Controllers
         [HttpPost]
         public ActionResult SignUp(string firstName, string lastName, string userName, string password)
         {
-
+            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+            Session["UserID"] = firstName;
             Customer cust = new Customer
             {
                 FirstName = firstName,
@@ -46,8 +55,7 @@ namespace KL_Hotel.Controllers
                 Password = password
             };
 
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-
+            
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
 
@@ -93,113 +101,49 @@ namespace KL_Hotel.Controllers
         {
             return View();
         }
-    }
-}
 
+        [HttpPost]
+        public ActionResult LogIn(string UserName, string Password)
+        {
 
-[HttpPost]
-public ActionResult LogIn(string UserName, string Password)
-{
-
-    string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-    OleDbConnection oleDbConnection = new OleDbConnection(connStr);
-    oleDbConnection.Open();
-
-    OleDbCommand com = new OleDbCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
-        + "' AND [Password]='" + Password + "'", oleDbConnection);
-
-    OleDbDataReader reader = com.ExecuteReader();
-    if (reader.HasRows)
-    {
-        Response.Write("Welcome user");
-        //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
-        return RedirectToAction("CustIndex");
-    }
-    else
-    {
-        Response.Write("Invalid username/password");
-
-    }
-
-
-    String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-    using (SqlConnection con = new SqlConnection(connString)
+            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connString)
             {
                  SqlCommand cmd = new SqlCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
                 + "' AND [Password]='" + Password + "'", con);
 
 
-    //read the info from the database table customer and store it in reader object
-    SqlDataReader reader = connection.ExecuteReader();
-    while (reader.Read())
-    {
-        Customer customer = new Customer
-        {
-            CustomerID = Convert.ToInt32(reader[0]),
-            UserName = reader[1].ToString(),
-            Password = reader[2].ToString()
-        };
-        if (reader.HasRows)
-        {
-            Response.Write("Welcome user");
-            //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
+            //read the info from the database table customer and store it in reader object
+            SqlDataReader reader = connection.ExecuteReader();
+            while (reader.Read())
+            {
+                Customer customer = new Customer
+                {
+                    CustomerID = Convert.ToInt32(reader[0]),
+                    UserName = reader[1].ToString(),
+                    Password = reader[2].ToString()
+                };
+                if (reader.HasRows)
+                {
+                    Response.Write("Welcome user");
+                    //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
+                }
+                else
+                {
+                    Response.Write("Invalid username/password");
+
+                }
+
+                //open the connection
+                connString.Open();
+                //execute the procedure
+                cmd.ExecuteNonQuery();
+
+                return RedirectToAction("CustIndex");
+
+            }
         }
-        else
-        {
-            Response.Write("Invalid username/password");
-
-        }
-
-        //open the connection
-        connString.Open();
-        //execute the procedure
-        cmd.ExecuteNonQuery();
-
-        return RedirectToAction("CustIndex");
-
-    }
-}
     }
 
 
 
-
-
-//        // GET: LogIn
-//        public ActionResult Index()
-//        {
-//            return View();
-//        }
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public ActionResult Login(UserProfile objUser)
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                using (CustomerBusinessLayer cbl = new CustomerBusinessLayer())
-//                {
-//                    var obj = cbl.UserProfiles.Where(a => a.UserName.Equals(objUser.UserName) && a.Password.Equals(objUser.Password)).FirstOrDefault();
-//                    if (obj != null)
-//                    {
-//                        Session["UserID"] = obj.UserId.ToString();
-//                        Session["UserName"] = obj.UserName.ToString();
-//                        return RedirectToAction("UserDashBoard");
-//                    }
-//                }
-//            }
-//            return View(objUser);
-//        }
-
-//        public ActionResult UserDashBoard()
-//        {
-//            if (Session["UserID"] != null)
-//            {
-//                return View();
-//            }
-//            else
-//            {
-//                return RedirectToAction("Login");
-//            }
-//        }
-//    }
-//}

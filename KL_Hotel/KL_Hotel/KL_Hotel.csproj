@@ -193,24 +193,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="CustDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CustDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CustDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CustDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>CustDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,15 +205,6 @@
     <Compile Include="Models\Reservations.cs" />
     <Compile Include="Models\Rooms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reservation.cs">
-      <DependentUpon>CustDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Room.cs">
-      <DependentUpon>CustDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserProfile.cs">
-      <DependentUpon>CustDataModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -239,16 +212,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="CustDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CustDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>CustDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="CustDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CustDataModel.edmx</DependentUpon>
-      <LastGenOutput>CustDataModel.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -275,13 +238,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="CustDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CustDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="CustDataModel.edmx.diagram">
-      <DependentUpon>CustDataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
