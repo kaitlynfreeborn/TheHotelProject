@@ -37,13 +37,6 @@ namespace KL_Hotel.Models
                 };
                 command.Parameters.Add(paramLastName);
 
-                SqlParameter paramUserName = new SqlParameter
-                {
-                    ParameterName = "@UserName",
-                    Value = cust.UserName
-                };
-                command.Parameters.Add(paramUserName);
-
                 SqlParameter paramPassword = new SqlParameter
                 {
                     ParameterName = "@Password",
@@ -89,13 +82,6 @@ namespace KL_Hotel.Models
                 };
                 command.Parameters.Add(paramLastName);
 
-                SqlParameter paramUserName = new SqlParameter
-                {
-                    ParameterName = "@UserName",
-                    Value = cust.UserName
-                };
-                command.Parameters.Add(paramUserName);
-
                 SqlParameter paramPassword = new SqlParameter
                 {
                     ParameterName = "@Password",
@@ -112,14 +98,6 @@ namespace KL_Hotel.Models
 
 
         }
-
-
-        //public static UserDataObject GetCustomUserDataObject(this HttpContext current)
-        //{
-        //    return current != null ? (UserDataObject)current.Session["__CustomUserData"] : null;
-        //}
-
-
 
         public void getCustomerDetails(Customer cust)
         {
@@ -143,8 +121,7 @@ namespace KL_Hotel.Models
                         CustomerID = Convert.ToInt32(reader[0]),
                         FirstName = reader[1].ToString(),
                         LastName = reader[2].ToString(),
-                        UserName = reader[3].ToString(),
-                        Password = reader[4].ToString()
+                        Password = reader[3].ToString()
                     };
                 }
 
