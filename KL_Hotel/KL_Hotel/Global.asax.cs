@@ -22,9 +22,9 @@ namespace KL_Hotel
            
         }
 
-        void OnSessionStart(...)
-        {
-            HttpContext.Current.Session.Add("CustomerID", new ());
-        }
+        //void OnSessionStart(Cus)
+        //{
+        //    HttpContext.Current.Session.Add("CustomerID", new));
+        //}
     }
 }

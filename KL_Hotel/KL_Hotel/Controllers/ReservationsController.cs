@@ -12,7 +12,7 @@ namespace KL_Hotel.Models
     public class ReservationsController : Controller
     {
         //Get Reservation
-        public ActionResult Index()
+        public ActionResult ResIndex()
         {
             ReservationBusinessLayer reservationBusiness = new ReservationBusinessLayer();
             List<Reservations> reservations = reservationBusiness.Reservations.ToList();
@@ -20,13 +20,13 @@ namespace KL_Hotel.Models
         }
 
         [HttpGet]
-        public ActionResult BookReservation()
+        public ActionResult AddReservation()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult BookReservation(DateTime StartDate, DateTime EndDate, string RoomType)
+        public ActionResult AddReservation(DateTime StartDate, DateTime EndDate, string RoomType)
         {
 
             Reservations res = new Reservations

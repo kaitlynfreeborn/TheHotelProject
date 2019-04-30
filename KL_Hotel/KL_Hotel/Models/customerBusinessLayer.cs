@@ -114,10 +114,10 @@ namespace KL_Hotel.Models
         }
 
 
-        public static UserDataObject GetCustomUserDataObject(this HttpContext current)
-        {
-            return current != null ? (UserDataObject)current.Session["__CustomUserData"] : null;
-        }
+        //public static UserDataObject GetCustomUserDataObject(this HttpContext current)
+        //{
+        //    return current != null ? (UserDataObject)current.Session["__CustomUserData"] : null;
+        //}
 
 
 
