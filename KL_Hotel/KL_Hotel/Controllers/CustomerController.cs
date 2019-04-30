@@ -23,21 +23,22 @@ namespace KL_Hotel.Controllers
                 string u;
                 CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
                 Customer cust = new Customer();
+                List<Customer> customers = customerBusiness.ShowCustInfo.ToList();
                 u = Session["CustomerID"].ToString();
                 if (u != null)  
                 {
 
 
                     //call the method in the business layer
-                    cust=customerBusiness.ShowCustInfo(u);
-
+                    //cust=customerBusiness.ShowCustInfo(u);
+                   
                     //return RedirectToAction("CustIndex");
                     return View(cust);
 
                 }
                 else
                 {
-                    return RedirectToAction("Login");
+                    return RedirectToAction("LogIn");
                 }
             }
         }
