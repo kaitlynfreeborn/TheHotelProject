@@ -19,7 +19,7 @@ namespace KL_Hotel.Controllers
         public ActionResult CustIndex()
         {
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            List<Customer> customer = customerBusiness..ToList();
+            List<Customer> customer = customerBusiness.ShowCustInfo.ToList();
             return View(customer);
         }
         //{
