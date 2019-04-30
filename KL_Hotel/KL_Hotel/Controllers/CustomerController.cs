@@ -18,42 +18,33 @@ namespace KL_Hotel.Controllers
 
         public ActionResult CustIndex()
         {
-            string u;
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            u = Session["CustomerID"].ToString();
-            if (u != null)
-            {
-                String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-                using (SqlConnection con = new SqlConnection(connString))
-                {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [CustomerID] ='" + u
-                   + "'", con);
-
-                    //open the connection
-                    con.Open();
-
-                    //read the info from the database table customer and store it in reader object
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-
-                        Customer customer = new Customer
-                        {
-                            CustomerID = Convert.ToInt32(reader[0]),
-                            FirstName = reader[1].ToString(),
-                            LastName = reader[2].ToString(),
-                            Password = reader[3].ToString()
-
-                        };
-                    }
-                    return View();
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            List<Customer> customer = customerBusiness..ToList();
+            return View(customer);
         }
+        //{
+        //    string u;
+        //    CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+        //    u = Session["CustomerID"].ToString();
+        //    if (u != null)
+        //    {
+        //        CustomerBusinessLayer customerBusiness2 = new CustomerBusinessLayer();
+
+        //        Customer cust = new Customer();
+
+
+        //        //call the method in the business layer
+        //        customerBusiness.ShowCustInfo(cust);
+
+        //        //return RedirectToAction("CustIndex");
+        //        return View();
+
+        //        }
+        //    else
+        //    {
+        //        return RedirectToAction("Login");
+        //    }
+        //}
 
         [HttpGet]
         public ActionResult SignUp()

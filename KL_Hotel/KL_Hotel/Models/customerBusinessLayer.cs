@@ -99,73 +99,78 @@ namespace KL_Hotel.Models
 
         }
 
-        public void getCustomerDetails(Customer cust)
+        public void ShowCustInfo(Customer cust)
         {
-
-
-            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-
-            using (SqlConnection connection = new SqlConnection(connString))
+            string u;
+            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+            u = Session["CustomerID"].ToString();
+            if (u != null)
             {
-                SqlCommand cmd = new SqlCommand("select * from Customer Where CustomerID =" + cust.CustomerID + " and  Password = '" + cust.Password + "'", connection)
+                String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(connString))
                 {
-                    CommandType = CommandType.Text
-                };
-                connection.Open();
-                //read the info from the database table customer and store it in reader object
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Customer customer = new Customer
-                    {
-                        CustomerID = Convert.ToInt32(reader[0]),
-                        FirstName = reader[1].ToString(),
-                        LastName = reader[2].ToString(),
-                        Password = reader[3].ToString()
-                    };
-                }
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [CustomerID] ='" + u
+                   + "'", con);
 
+                    //open the connection
+                    con.Open();
+
+                    //read the info from the database table customer and store it in reader object
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        Customer customer = new Customer
+                        {
+                            CustomerID = Convert.ToInt32(reader[0]),
+                            FirstName = reader[1].ToString(),
+                            LastName = reader[2].ToString(),
+                            Password = reader[3].ToString()
+
+                        };
+                    }
+                    return View();
+                }
             }
+
+
+            //public IEnumerable<Customer> Customers
+            //{
+            //    get
+            //    {
+            //        String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+            //        List<Customer> cust = new List<Customer>();
+            //        using (SqlConnection con = new SqlConnection(connString))
+            //        {
+            //            SqlCommand cmd = new SqlCommand("Select * from Customer", con);
+            //            cmd.CommandType = CommandType.Text;
+            //            con.Open();
+
+            //            // read the info from the database table customer and store it in reader object
+            //            SqlDataReader reader = cmd.ExecuteReader();
+            //            while (reader.Read())
+            //            {
+            //                Customer customer = new Customer();
+            //                customer.CustomerID = Convert.ToInt32(reader[0]);
+            //                customer.FirstName = reader[1].ToString();
+            //                customer.LastName = reader[2].ToString();
+            //                customer.street = reader[3].ToString();
+            //                customer.city = reader[4].ToString();
+            //                customer.state = reader[5].ToString();
+            //                customer.ZipCode = Convert.ToInt32(reader[6]);
+            //                // add the object to the list
+            //                cust.Add(customer);
+
+
+            //            }
+
+            //            // return the list to the calling method
+            //            return cust;
+            //        }
+            //    }
+            //}
+
         }
 
-
-        //public IEnumerable<Customer> Customers
-        //{
-        //    get
-        //    {
-        //        String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-        //        List<Customer> cust = new List<Customer>();
-        //        using (SqlConnection con = new SqlConnection(connString))
-        //        {
-        //            SqlCommand cmd = new SqlCommand("Select * from Customer", con);
-        //            cmd.CommandType = CommandType.Text;
-        //            con.Open();
-
-        //            // read the info from the database table customer and store it in reader object
-        //            SqlDataReader reader = cmd.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                Customer customer = new Customer();
-        //                customer.CustomerID = Convert.ToInt32(reader[0]);
-        //                customer.FirstName = reader[1].ToString();
-        //                customer.LastName = reader[2].ToString();
-        //                customer.street = reader[3].ToString();
-        //                customer.city = reader[4].ToString();
-        //                customer.state = reader[5].ToString();
-        //                customer.ZipCode = Convert.ToInt32(reader[6]);
-        //                // add the object to the list
-        //                cust.Add(customer);
-
-
-        //            }
-
-        //            // return the list to the calling method
-        //            return cust;
-        //        }
-        //    }
-        //}
-
     }
-
-
 }
