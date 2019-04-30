@@ -15,17 +15,44 @@ namespace KL_Hotel.Controllers
     {
         //var userData = HttpContext.Current.GetCustomUserDataObject();
         //GET: Customer
+
         public ActionResult CustIndex()
         {
-            //    if (session has value)
-            //            {
-            //        return
-            //            }
             string u;
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
             u = Session["CustomerID"].ToString();
-            return View();
-            //this should be where if session yes
+            if (u != null)
+            {
+                String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [CustomerID] ='" + u
+                   + "'", con);
+
+                    //open the connection
+                    con.Open();
+
+                    //read the info from the database table customer and store it in reader object
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        Customer customer = new Customer
+                        {
+                            CustomerID = Convert.ToInt32(reader[0]),
+                            FirstName = reader[1].ToString(),
+                            LastName = reader[2].ToString(),
+                            Password = reader[3].ToString()
+
+                        };
+                    }
+                    return View();
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpGet]
@@ -50,8 +77,8 @@ namespace KL_Hotel.Controllers
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
 
-            return RedirectToAction("CustIndex");
-
+            //return RedirectToAction("CustIndex");
+            return View();
 
         }
 
@@ -113,8 +140,8 @@ namespace KL_Hotel.Controllers
                 //    Customer customer = new Customer
                 //    {
                 //        CustomerID = Convert.ToInt32(reader[0]),
-                //        UserName = reader[1].ToString(),
-                //        Password = reader[2].ToString()
+                //        Password = reader[1].ToString()
+                            
                 //    };
                 if (reader.HasRows)
                 {
