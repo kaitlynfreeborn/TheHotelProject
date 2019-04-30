@@ -41,7 +41,7 @@ namespace KL_Hotel.Models
             //call the method in the business layer
             reservationBusiness.AddReservation(res);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ResIndex");
 
 
         }
