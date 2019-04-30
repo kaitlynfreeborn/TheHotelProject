@@ -8,8 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.OleDb;
 using System.Configuration;
-
-
+using System.Data.SqlClient;
 
 namespace KL_Hotel.Controllers
 {
@@ -19,8 +18,8 @@ namespace KL_Hotel.Controllers
         public ActionResult CustIndex()
         {
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            List<Customer> customer = customerBusiness.Customers.ToList();
-            return View(customer);
+            //List<Customer> customer = customerBusiness.getCustomer.ToList();
+            return View();
         }
 
         [HttpGet]
@@ -58,7 +57,7 @@ namespace KL_Hotel.Controllers
             CustomerBusinessLayer cbl = new CustomerBusinessLayer();
 
             //fetches all the values into the specific object with customer (gets all info so don't have to type it all out)
-            Customer customer = cbl.Customers.Single(cust => cust.CustomerID == id);
+            Customer customer = cbl.getCustomerDetails.Single(cust => cust.CustomerID == id);
 
             return View(customer);
         }
@@ -94,13 +93,13 @@ namespace KL_Hotel.Controllers
         {
 
                 string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-                OleDbConnection oleDbConnection = new OleDbConnection(connStr);
+                SqlConnection oleDbConnection = new SqlConnection(connStr);
                 oleDbConnection.Open();
 
-                OleDbCommand com = new OleDbCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
-                    + "' AND [Password]='" + Password + "'", oleDbConnection);
+                SqlCommand com = new SqlCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
+                    + "' AND [Password]='" + Password + "'", SqlConnection);
 
-                OleDbDataReader reader = com.ExecuteReader();
+                SqlDataReader reader = com.ExecuteReader();
                 if (reader.HasRows)
                 {
                     Response.Write("Welcome user");

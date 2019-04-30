@@ -253,8 +253,7 @@
     <Content Include="Views\Home\HomeIndex.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Rooms\RoomIndex.cshtml" />
-    <Content Include="Views\Rooms\Room.cshtml" />
+    <Content Include="Views\Rooms\RoomsIndex.cshtml" />
     <Content Include="Views\Customer\SignUp.cshtml" />
     <Content Include="Views\Customer\CustIndex.cshtml" />
     <Content Include="Views\Home\About.cshtml" />

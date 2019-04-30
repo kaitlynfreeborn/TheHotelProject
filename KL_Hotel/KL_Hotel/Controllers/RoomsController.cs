@@ -34,13 +34,6 @@ namespace KL_Hotel.Controllers
             return View(rm);
         }
 
-        public ActionResult Room()
-        {
-            Rooms n = new Rooms();
-
-            return View(n);
-        }
-
     }
 
 }
