@@ -3,14 +3,14 @@
     ViewBag.Title = "RoomIndex";
 }
 
-    <body style="background-color:aliceblue;">
+<body style="background-color:aliceblue;">
 
-        <div class="container" align="center">
-            <h2 align="center" style="font-size:100px; color:black;"><b>ROOMS</b></h2>
-            <div class="col-lg-3" style="align-items:center;"></div>
-            @foreach (var rm in Model)
-            {
-                <div class="row" style="align-items:center;">
+    <div class="container" align="center">
+        <h2 align="center" style="font-size:100px; color:black;"><b>ROOMS</b></h2>
+        <div class="col-lg-3" style="align-items:center;"></div>
+        @foreach (var rm in Model)
+        {
+            <div class="row" style="align-items:center;">
                 <div class="card" style="border: double black 5px; margin: 15px; min-width: 225px">
                     <img src="@rm.RoomImage" class="card-img-top" alt="..." />
                     <div class="card-body" style="border-color:darkblue; background-color:antiquewhite;">
@@ -26,8 +26,11 @@
                         </div>
                     </div>
                 </div>
-                </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
+
+
+    
 </body>
 
