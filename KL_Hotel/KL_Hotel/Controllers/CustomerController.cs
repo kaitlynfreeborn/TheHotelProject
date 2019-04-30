@@ -18,33 +18,29 @@ namespace KL_Hotel.Controllers
 
         public ActionResult CustIndex()
         {
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            List<Customer> customer = customerBusiness.ShowCustInfo.ToList();
-            return View(customer);
+
+            {
+                string u;
+                CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+                Customer cust = new Customer();
+                u = Session["CustomerID"].ToString();
+                if (u != null)  
+                {
+
+
+                    //call the method in the business layer
+                    cust=customerBusiness.ShowCustInfo(u);
+
+                    //return RedirectToAction("CustIndex");
+                    return View(cust);
+
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+            }
         }
-        //{
-        //    string u;
-        //    CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-        //    u = Session["CustomerID"].ToString();
-        //    if (u != null)
-        //    {
-        //        CustomerBusinessLayer customerBusiness2 = new CustomerBusinessLayer();
-
-        //        Customer cust = new Customer();
-
-
-        //        //call the method in the business layer
-        //        customerBusiness.ShowCustInfo(cust);
-
-        //        //return RedirectToAction("CustIndex");
-        //        return View();
-
-        //        }
-        //    else
-        //    {
-        //        return RedirectToAction("Login");
-        //    }
-        //}
 
         [HttpGet]
         public ActionResult SignUp()
@@ -136,7 +132,6 @@ namespace KL_Hotel.Controllers
                 //    };
                 if (reader.HasRows)
                 {
-                    Response.Write("Welcome user");
                     Session["CustomerID"] = CustomerID;
                     //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
                 }
@@ -148,9 +143,7 @@ namespace KL_Hotel.Controllers
 
 
 
-                //}
-                // return RedirectToAction("CustIndex");
-                return View();
+                return RedirectToAction("CustIndex");
             }
           
         }
