@@ -200,7 +200,6 @@
     <Compile Include="Models\CustomerBusinessLayer.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
-    <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\ReservationBusinessLayer.cs" />
     <Compile Include="Models\Reservations.cs" />
     <Compile Include="Models\Rooms.cs" />
@@ -272,8 +271,6 @@
     <Content Include="Views\Reservations\ResIndex.cshtml" />
     <Content Include="Views\Reservations\EditReservation.cshtml" />
     <Content Include="Views\Reservations\DeleteReservation.cshtml" />
-    <Content Include="Views\LogInModel\LogInIndex.cshtml" />
-    <Content Include="Views\LogInModel\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
