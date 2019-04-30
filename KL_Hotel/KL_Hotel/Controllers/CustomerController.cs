@@ -97,6 +97,73 @@ namespace KL_Hotel.Controllers
 }
 
 
+[HttpPost]
+public ActionResult LogIn(string UserName, string Password)
+{
+
+    string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+    OleDbConnection oleDbConnection = new OleDbConnection(connStr);
+    oleDbConnection.Open();
+
+    OleDbCommand com = new OleDbCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
+        + "' AND [Password]='" + Password + "'", oleDbConnection);
+
+    OleDbDataReader reader = com.ExecuteReader();
+    if (reader.HasRows)
+    {
+        Response.Write("Welcome user");
+        //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
+        return RedirectToAction("CustIndex");
+    }
+    else
+    {
+        Response.Write("Invalid username/password");
+
+    }
+
+
+    String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
+    using (SqlConnection con = new SqlConnection(connString)
+            {
+                 SqlCommand cmd = new SqlCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
+                + "' AND [Password]='" + Password + "'", con);
+
+
+    //read the info from the database table customer and store it in reader object
+    SqlDataReader reader = connection.ExecuteReader();
+    while (reader.Read())
+    {
+        Customer customer = new Customer
+        {
+            CustomerID = Convert.ToInt32(reader[0]),
+            UserName = reader[1].ToString(),
+            Password = reader[2].ToString()
+        };
+        if (reader.HasRows)
+        {
+            Response.Write("Welcome user");
+            //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
+        }
+        else
+        {
+            Response.Write("Invalid username/password");
+
+        }
+
+        //open the connection
+        connString.Open();
+        //execute the procedure
+        cmd.ExecuteNonQuery();
+
+        return RedirectToAction("CustIndex");
+
+    }
+}
+    }
+
+
+
+
 
 //        // GET: LogIn
 //        public ActionResult Index()
@@ -136,70 +203,3 @@ namespace KL_Hotel.Controllers
 //        }
 //    }
 //}
-
-//[HttpPost]
-//        public ActionResult LogIn(string UserName, string Password)
-//        {
-
-//            string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-//            OleDbConnection oleDbConnection = new OleDbConnection(connStr);
-//            oleDbConnection.Open();
-
-//            OleDbCommand com = new OleDbCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
-//                + "' AND [Password]='" + Password + "'", oleDbConnection);
-
-//            OleDbDataReader reader = com.ExecuteReader();
-//            if (reader.HasRows)
-//            {
-//                Response.Write("Welcome user");
-//                //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
-//                return RedirectToAction("CustIndex");
-//            }
-//            else
-//            {
-//                Response.Write("Invalid username/password");
-
-//            }
-
-
-//            String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-//            using (SqlConnection con = new SqlConnection(connString)
-//            {
-//                 SqlCommand cmd = new SqlCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
-//                + "' AND [Password]='" + Password + "'", con);
-
-
-//                //read the info from the database table customer and store it in reader object
-//                SqlDataReader reader = connection.ExecuteReader();
-//            while (reader.Read())
-//            {
-//                Customer customer = new Customer
-//                {
-//                    CustomerID = Convert.ToInt32(reader[0]),
-//                    UserName = reader[1].ToString(),
-//                    Password = reader[2].ToString()
-//                };
-//                if (reader.HasRows)
-//                {
-//                    Response.Write("Welcome user");
-//                    //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
-//                }
-//                else
-//                {
-//                    Response.Write("Invalid username/password");
-
-//                }
-
-//                //open the connection
-//                connString.Open();
-//                //execute the procedure
-//                cmd.ExecuteNonQuery();
-
-//                return RedirectToAction("CustIndex");
-
-//            }
-//        }
-//    }
-
-
-
