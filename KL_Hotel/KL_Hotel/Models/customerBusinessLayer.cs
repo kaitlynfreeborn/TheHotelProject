@@ -55,8 +55,10 @@ namespace KL_Hotel.Models
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connString))
             {
-                SqlCommand command = new SqlCommand("spEditCustomer", sqlCon);
-                command.CommandType = CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("spEditCustomer", sqlCon)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
                 //add the parameters to the command object. 
 
                 SqlParameter paramFirstName = new SqlParameter
@@ -99,37 +101,33 @@ namespace KL_Hotel.Models
 
         }
 
-        public void ShowCustInfo(Customer cust)
+        public Customer ShowCustInfo(string u)
         {
-            string u;
-            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            u = Session["CustomerID"].ToString();
-            if (u != null)
-            {
                 String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
                 using (SqlConnection con = new SqlConnection(connString))
                 {
+
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [CustomerID] ='" + u
                    + "'", con);
 
                     //open the connection
                     con.Open();
-
+                Customer customer = new Customer();
                     //read the info from the database table customer and store it in reader object
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
+                    CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
 
-                        Customer customer = new Customer
-                        {
-                            CustomerID = Convert.ToInt32(reader[0]),
-                            FirstName = reader[1].ToString(),
-                            LastName = reader[2].ToString(),
-                            Password = reader[3].ToString()
 
-                        };
+                    customer.CustomerID = Convert.ToInt32(reader["CustomerID"]);
+                    customer.FirstName = reader["FirstName"].ToString();
+                    customer.LastName = reader["LastName"].ToString();
+                    customer.Password = reader["Password"].ToString();
+
+                        
                     }
-                    return View();
+                    return customer;
                 }
             }
 
@@ -173,4 +171,3 @@ namespace KL_Hotel.Models
         }
 
     }
-}

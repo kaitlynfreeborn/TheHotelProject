@@ -103,11 +103,6 @@ namespace KL_Hotel.Models
 
             return RedirectToAction("Index");
         }
-        [HttpGet]
 
-        public ActionResult LogIn()
-        {
-            return View();
-        }
     }
 }
