@@ -30,8 +30,9 @@ namespace KL_Hotel.Controllers
             //            {
             //        return
             //            }
-
+            string u;
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+            u = Session["UserName"].ToString();
             return View();
             //this should be where if session yes
         }
@@ -46,7 +47,7 @@ namespace KL_Hotel.Controllers
         public ActionResult SignUp(string firstName, string lastName, string userName, string password)
         {
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
-            Session["UserID"] = firstName;
+
             Customer cust = new Customer
             {
                 FirstName = firstName,
@@ -55,7 +56,7 @@ namespace KL_Hotel.Controllers
                 Password = password
             };
 
-            
+
             //call the method in the business layer
             customerBusiness.AddCustomer(cust);
 
@@ -107,25 +108,29 @@ namespace KL_Hotel.Controllers
         {
 
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(connString)
+            using (SqlConnection con = new SqlConnection(connString))
             {
-                 SqlCommand cmd = new SqlCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
-                + "' AND [Password]='" + Password + "'", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [UserName] ='" + UserName
+               + "' AND [Password]='" + Password + "'", con);
 
+                //open the connection
+                con.Open();
 
-            //read the info from the database table customer and store it in reader object
-            SqlDataReader reader = connection.ExecuteReader();
-            while (reader.Read())
-            {
-                Customer customer = new Customer
-                {
-                    CustomerID = Convert.ToInt32(reader[0]),
-                    UserName = reader[1].ToString(),
-                    Password = reader[2].ToString()
-                };
+                //read the info from the database table customer and store it in reader object
+                SqlDataReader reader = cmd.ExecuteReader();
+                //while (reader.Read())
+                //{
+
+                //    Customer customer = new Customer
+                //    {
+                //        CustomerID = Convert.ToInt32(reader[0]),
+                //        UserName = reader[1].ToString(),
+                //        Password = reader[2].ToString()
+                //    };
                 if (reader.HasRows)
                 {
                     Response.Write("Welcome user");
+                    Session["UserName"] = UserName;
                     //store the login into seession id like global variable, and check my acct page for controller whether there is a value and if yes sho info for that account
                 }
                 else
@@ -134,16 +139,18 @@ namespace KL_Hotel.Controllers
 
                 }
 
-                //open the connection
-                connString.Open();
-                //execute the procedure
-                cmd.ExecuteNonQuery();
 
-                return RedirectToAction("CustIndex");
 
+                //}
+                // return RedirectToAction("CustIndex");
+                return View();
             }
+            // Session["UserID"] = firstName;
         }
     }
+}
+
+
 
 
 
