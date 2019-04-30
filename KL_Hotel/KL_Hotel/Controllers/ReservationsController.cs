@@ -53,7 +53,7 @@ namespace KL_Hotel.Models
             ReservationBusinessLayer cbl = new ReservationBusinessLayer();
 
             //fetches all the values into the specific object with customer (gets all info so don't have to type it all out)
-           Reservations reservation = cbl.Reservations.Single(res => res.ReservationID == id);
+            Reservations reservation = cbl.Reservations.Single(res => res.ReservationID == id);
 
             return View(reservation);
         }
@@ -83,7 +83,7 @@ namespace KL_Hotel.Models
             ReservationBusinessLayer rbl = new ReservationBusinessLayer();
 
             //fetches all the values into the specific object with customer(gets all info so don't have to type it all out)
-            Reservations reservation  = rbl.Reservations.Single(res => res.ReservationID == id);
+            Reservations reservation = rbl.Reservations.Single(res => res.ReservationID == id);
 
             return View(reservation);
         }
@@ -108,33 +108,6 @@ namespace KL_Hotel.Models
         public ActionResult LogIn()
         {
             return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(string UserName, string Password)
-        {
-
-            string connStr = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
-            OleDbConnection oleDbConnection = new OleDbConnection(connStr);
-            oleDbConnection.Open();
-
-            OleDbCommand com = new OleDbCommand("SELECT * FROM Login WHERE [User_ID] ='" + UserName
-                + "' AND [Password]='" + Password + "'", oleDbConnection);
-
-            OleDbDataReader reader = com.ExecuteReader();
-            if (reader.HasRows)
-            {
-                Response.Write("Welcome user");
-
-            }
-            else
-            {
-                Response.Write("Invalid username/password");
-
-            }
-            return RedirectToAction("Index");
-
-
         }
     }
 }

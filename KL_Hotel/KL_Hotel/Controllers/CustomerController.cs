@@ -35,7 +35,7 @@ namespace KL_Hotel.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(string firstName, string lastName, string userName, string password)
+        public ActionResult SignUp(string firstName, string lastName, string password)
         {
             CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
 
@@ -70,7 +70,7 @@ namespace KL_Hotel.Controllers
 
 
         [HttpPost]
-        public ActionResult Edit(int id, string FirstName, string LastName, string UserName, string Password)
+        public ActionResult Edit(int id, string FirstName, string LastName, string Password)
         {
             Customer cust = new Customer()
             {
