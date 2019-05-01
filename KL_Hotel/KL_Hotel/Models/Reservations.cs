@@ -13,9 +13,5 @@ namespace KL_Hotel.Models
         public DateTime EndDate { get; set; }
         public string RoomType { get; set; }
 
-        public static implicit operator Reservations(Reservations v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
