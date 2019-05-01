@@ -28,10 +28,9 @@ namespace KL_Hotel.Controllers
                 if (u != null)  
                 {
 
-
                     //call the method in the business layer
                     //cust=customerBusiness.ShowCustInfo(u);
-                   
+
                     //return RedirectToAction("CustIndex");
                     return View(cust);
 

@@ -12,6 +12,8 @@ namespace KL_Hotel.Models
     public class CustomerBusinessLayer
 
     {
+     
+
         public void AddCustomer(Customer cust)
         {
             String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
@@ -136,40 +138,46 @@ namespace KL_Hotel.Models
         {
            get
             {
+                //string u;
                 
+                //    u = System.Web.HttpContext.Current.Session["CustomerID"].ToString();
+
                
                 String connString = ConfigurationManager.ConnectionStrings["AddCustInfo"].ConnectionString;
                 List<Customer> cust = new List<Customer>();
-                using (SqlConnection con = new SqlConnection(connString))
-                {
-                    SqlCommand cmd = new SqlCommand();
-                    //SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [CustomerID] ='" + u
-                    //+ "'", con);
-
-                    //open the connection
-                    con.Open();
-                    Customer customer = new Customer();
-                    //read the info from the database table customer and store it in reader object
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    using (SqlConnection con = new SqlConnection(connString))
                     {
-                        CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE CustomerID = CustomerID" , con);
+                        //SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE [CustomerID] ='" + u
+                        //+ "'", con);
+
+                        //open the connection
+                        con.Open();
+                        Customer customer = new Customer();
+                        //read the info from the database table customer and store it in reader object
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            CustomerBusinessLayer customerBusiness = new CustomerBusinessLayer();
 
 
-                        customer.CustomerID = Convert.ToInt32(reader["CustomerID"]);
-                        customer.FirstName = reader["FirstName"].ToString();
-                        customer.LastName = reader["LastName"].ToString();
-                        customer.Password = reader["Password"].ToString();
+                            customer.CustomerID = Convert.ToInt32(reader["CustomerID"]);
+                            customer.FirstName = reader["FirstName"].ToString();
+                            customer.LastName = reader["LastName"].ToString();
+                            customer.Password = reader["Password"].ToString();
 
-                        cust.Add(customer);
+                            cust.Add(customer);
 
-                    }
-                    return cust;
-
+                        }
+                    
+                        return cust;
+                    
 
                 }
             }
         }
+
+  
     }
 
 }
