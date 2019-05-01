@@ -20,6 +20,10 @@
             @Html.HiddenFor(model => model.ReservationID)
             @Html.HiddenFor(model => model.CustomerID)
 
+
+            <div style="padding-left:6em;">
+                    @Html.ActionLink("Be sure to log in before reserving your room!", "LogIn", "Customer")
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
