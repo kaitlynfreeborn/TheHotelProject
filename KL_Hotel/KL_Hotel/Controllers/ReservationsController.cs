@@ -74,7 +74,7 @@ namespace KL_Hotel.Models
             ReservationBusinessLayer rbl = new ReservationBusinessLayer();
             rbl.EditReservation(res);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ResIndex");
         }
 
         [HttpGet]
@@ -101,7 +101,7 @@ namespace KL_Hotel.Models
             ReservationBusinessLayer rbl = new ReservationBusinessLayer();
             rbl.DeleteReservation(res);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ResIndex");
         }
 
     }
